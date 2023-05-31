@@ -1,0 +1,22 @@
+<h1>{{ question.title }}</h1>
+<p>{{ question.content }}</p>
+<p>Asked by: {{ question.user.username }}</p>
+<p>Likes: {{ question.answer_set.count }}</p>
+
+{% for answer in answers %}
+  <div>
+    <p>{{ answer.content }}</p>
+    <p>Answered by: {{ answer.user.username }}</p>
+    <p>Likes: {{ answer.like_set.count }}</p>
+    <a href="{% url 'like_answer' answer.id %}">Like</a>
+  </div>
+  <hr>
+{% empty %}
+  <p>No answers found.</p>
+{% endfor %}
+
+<a href="{% url 'answer_question' question.id %}">Answer Question</a>
+
+<a href="{% url 'home' %}">Back to Home</a>
+
+<a href="{% url 'logout' %}">Logout</a>

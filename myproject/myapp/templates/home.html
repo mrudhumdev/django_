@@ -1,0 +1,19 @@
+<h1>Quora-like Website</h1>
+
+{% for question in questions %}
+  <div>
+    <h3>{{ question.title }}</h3>
+    <p>{{ question.content }}</p>
+    <p>Asked by: {{ question.user.username }}</p>
+    <p>Likes: {{ question.answer_set.count }}</p>
+    <a href="{% url 'view_question' question.id %}">View Question</a>
+  </div>
+  <hr>
+{% empty %}
+  <p>No questions found.</p>
+{% endfor %}
+
+<a href="{% url 'create_question' %}">Post a Question</a>
+<br>
+
+<a href="{% url 'logout' %}">Logout</a>
